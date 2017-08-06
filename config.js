@@ -248,6 +248,7 @@ System.config({
     "core-js": "npm:core-js@1.2.7",
     "electron": "@node/electron",
     "gapi": "https://apis.google.com/js/client.js",
+    "lodash": "npm:lodash@4.17.4",
     "main": "main.ts",
     "p5": "npm:p5@0.5.10",
     "prod": "prod.json",

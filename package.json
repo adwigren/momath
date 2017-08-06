@@ -34,6 +34,7 @@
     },
     "dependencies": {
       "awesomplete": "npm:awesomplete@1.1.1",
+      "lodash": "npm:lodash@^4.17.4",
       "p5": "npm:p5@^0.5.9",
       "three": "npm:three@~0.85.2",
       "ts": "github:frankwallis/plugin-typescript@^7.0.6",
