@@ -34,18 +34,18 @@ pb.setup = function (p) {
 //new drawUser
 pb.drawUserNew = function (user) {
 
-  if(indexes[user.id] == null) {
-    this.p5.fill(user.id >= 0 ? Display.teamColors[user.id%Display.teamColors.length] : 255);
-    this.p5.noStroke();
-    indexes[user.id] = 1;
+  if(indexes[user.id]) {
+    indexes[user.id] = indexes[user.id]+1;
+    console.log("still here");
     // this.p5.noFill();
     // this.p5.stroke(68);
     // this.p5.strokeWeight(1);
     // this.p5.ellipse(user.x, user.y, 31);
   }
   else {
-    indexes[user.id] = indexes[user.id]+1;
-    console.log("still here");
+    this.p5.fill(user.id >= 0 ? Display.teamColors[user.id%Display.teamColors.length] : 255);
+    this.p5.noStroke();
+    indexes[user.id] = 1;
   }
   this.p5.ellipse(user.x, user.y, indexes[user.id]);
 
@@ -58,22 +58,13 @@ pb.draw = function (floor, p) {
   for (let u of floor.users) {
     pb.drawUserNew(u);
   }
-  this.fill(128, 128, 128, 128);
-  this.noStroke();
   pb.drawSensors(floor.sensors);
 };
 
 function update(newUsers, deletedUsers, otherUsers) {
-  // console.log("deleted"+deletedUsers);
-  // console.log("new"+newUsers);
-  // console.log("other"+otherUsers);
-
-  for (let uid of indexes) {
-    if(uid in deletedUsers) {
-      indexes[uid] = null;
-    }
+  for(var user of deletedUsers) {
+    indexes[user.id] = null;
   }
-
 }
 
 export const behavior = {
@@ -81,7 +72,7 @@ export const behavior = {
   init: pb.init.bind(pb),
   frameRate: 'sensors',
   render: pb.render.bind(pb),
-  numGhosts: 1
+  numGhosts: 1,
   userUpdate: update,
 };
 export default behavior
