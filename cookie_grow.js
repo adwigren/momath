@@ -61,20 +61,6 @@ pb.draw = function (floor, p) {
 
 };
 
-function dragSegment(monster, p) {
-  var alpha = 0;
-  var size = 0;
-  var sizeInterval;
-  var alphaInterval = 0.5/monster.location.length;
-
-  p.noStroke()
-  for(var i = 1; i < monster.location.length-1; i++){
-    p.fill(80);
-    p.ellipse(monster.location[i].x-size, monster.location[i].y-size, 2, 2);
-    alpha += alphaInterval;
-    size +=  monster.radiusTail(i-1);;
-  }
-}
 
 function update(newUsers, deletedUsers, otherUsers) {
   _.each(newUsers, user => {
