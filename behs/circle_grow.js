@@ -47,10 +47,12 @@ pb.draw = function (floor, p) {
 
   _.each(floor.users, user => {
     const monster = monsters[user.id];
-    const headLocation = monster.location[0];
+    const headLocation = monster.headLocation();
     if (table.hadCookie(headLocation.x, headLocation.y, monster.radius())) {
       monster.eatOne();
     }
+    console.log(headLocation);
+    console.log(monster);
     monster.move(user.x, user.y);
     //dragSegment(monster, p);
     // for(var i = 0; i<monster.location.length-1; i++) {
@@ -115,7 +117,7 @@ function segment (p, x, y, a){
 
 function update(newUsers, deletedUsers, otherUsers) {
   _.each(newUsers, user => {
-    monsters[user.id] = new CookieMonster(user.x, user.y);
+    monsters[user.id] = new CookieMonster(user.x, user.y, user.id);
     table.MAX_COOKIES++;
   }
 
