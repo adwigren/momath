@@ -20,7 +20,7 @@ Code is represented in the following files:
 - models/CookieTable.js
 - models/CookieMonster.js
 - components/CookieMonsterComponent.js
-- models/CookieTableComponent.js
+- components/CookieTableComponent.js
 
 
 ---

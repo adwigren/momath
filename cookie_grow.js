@@ -1,12 +1,12 @@
 /* MoMath Math Square Behavior
  *
- *        Title: P5 Example
- *  Description: Display user blobs and sensors (same as debug)
+ *        Title: Fibonacci Cookie Hunt
+ *  Description: Chase after cookies and see your cookie tail grow according to Fibonacci sequence
  * Scheduler ID:
  *    Framework: P5
- *       Author: Dylan Simon <dylan@dylex.net>
- *      Created: 2017-04
- *       Status: works
+ *       Author: Adam Wigren and Lisa Li
+ *      Created: 2017-08-05
+ *       Status: 
  */
 
 import _ from 'lodash';
@@ -54,12 +54,6 @@ pb.draw = function (floor, p) {
     console.log(headLocation);
     console.log(monster);
     monster.move(user.x, user.y);
-    //dragSegment(monster, p);
-    // for(var i = 0; i<monster.location.length-1; i++) {
-    //   dragSegment(p, i+1, monster.location[i].x, monster.location[i].y, monster.location[i+1].x, monster.location[i+1].y);
-    //   p.strokeWeight(9);
-    //   p.stroke(255, 100);
-    // }
 
     const monsterComponent = new CookieMonsterComponent(monster);
     monsterComponent.render(p);
@@ -80,39 +74,6 @@ function dragSegment(monster, p) {
     alpha += alphaInterval;
     size +=  monster.radiusTail(i-1);;
   }
-  //
-  // for(var i = 0; i<monster.tailLocation.length-1; i++) {
-  //   var xii = monster.tailLocation[i+1].x;
-  //   var yii = monster.tailLocation[i+1].y;
-  //   var xin = monster.tailLocation[i].x;
-  //   var yin = monster.tailLocation[i].y;
-  //   var dx = xin - xii;
-  //   var dy = yin - yii;
-  //   var angle = Math.atan2(dy, dx);
-  //   xii = xin - Math.cos(angle) * monster.tailLocation.length;
-  //   yii = yin - Math.sin(angle) * monster.tailLocation.length;
-  //   segment(p, xii, yii, angle);
-  //   // dragSegment(p, i+1, monster.location[i].x, monster.location[i].y, monster.location[i+1].x, monster.location[i+1].y);
-  //   p.strokeWeight(9);
-  //   p.stroke(255, 100);
-  // }
-}
-
-// function dragSegment (p, i, xin, yin, xii, yii) {
-//   var dx = xin - xii;
-//   var dy = yin - yii;
-//   var angle = Math.atan2(dy, dx);
-//   xii = xin - Math.cos(angle) * 18;
-//   yii = yin - Math.sin(angle) * 18;
-//   segment(p, xii, yii, angle);
-// }
-
-function segment (p, x, y, a){
-  p.push();
-  p.translate(x, y);
-  p.rotate(a);
-  p.line(0, 0, 18, 0);
-  p.pop();
 }
 
 function update(newUsers, deletedUsers, otherUsers) {
@@ -125,19 +86,10 @@ function update(newUsers, deletedUsers, otherUsers) {
     table.MAX_COOKIES--;
   }
 
-  // for(var user of deletedUsers) {
-  //   if(userTailNum[user.id] != undefined) {
-  //     userTailNum[user.id] = null;
-  //   }
-  // }
-
-  // for(var user of deletedUsers) {
-  //   indexes[user.id] = null;
-  // }
 }
 
 export const behavior = {
-  title: "Sensor Debug (P5)",
+  title: "Fibonacci Cookie Hunt (P5)",
   init: pb.init.bind(pb),
   frameRate: 20,
   render: pb.render.bind(pb),
